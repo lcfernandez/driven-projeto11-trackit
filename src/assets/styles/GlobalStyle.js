@@ -6,7 +6,10 @@ const GlobalStyle = createGlobalStyle`
     License: none (public domain)
     +
     box-sizing best practices
+    +
+    project additions
     */
+
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -58,6 +61,10 @@ const GlobalStyle = createGlobalStyle`
     *:before,
     *:after {
         box-sizing: inherit;
+    }
+    /* project additions */
+    body {
+        font-family: 'Lexend Deca', sans-serif;
     }
 `;
 

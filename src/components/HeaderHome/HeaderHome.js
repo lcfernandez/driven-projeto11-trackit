@@ -15,5 +15,5 @@ export default function HeaderHome() {
 const HeaderHomeContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin: 68px 0 32px 0;
+    margin: 8px 0;
 `;
