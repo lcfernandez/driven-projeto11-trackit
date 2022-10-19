@@ -11,7 +11,7 @@ export default function HeaderApp() {
                 TrackIt
             </span>
 
-            <img alt="Foto de perfil" src={avatar} />
+            <img alt="Foto de perfil" data-identifier="avatar" src={avatar} />
         </HeaderAppContainer>
     );
 }
@@ -31,6 +31,7 @@ const HeaderAppContainer = styled.div`
     position: fixed;
     top: 0px;
     width: 100%;
+    z-index: 1;
 
     img {
         border-radius: 50%;

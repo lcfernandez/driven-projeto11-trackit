@@ -4,11 +4,11 @@ import styled from "styled-components";
 export default function Footer() {
     return (
         <FooterContainer>
-            <span>
+            <span data-identifier="habit-page-action">
                 Hábitos
             </span>
 
-            <span>
+            <span data-identifier="historic-page-action">
                 Histórico
             </span>
         </FooterContainer>
@@ -28,4 +28,5 @@ const FooterContainer = styled.div`
     padding: 0 36px;
     position: fixed;
     width: 100%;
+    z-index: 1;
 `;

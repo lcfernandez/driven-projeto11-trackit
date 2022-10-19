@@ -16,12 +16,12 @@ export default function HabitsPage() {
                         Meus hábitos
                     </span>
 
-                    <button>
+                    <button data-identifier="create-habit-btn">
                         +
                     </button>
                 </div>
 
-                <p>
+                <p data-identifier="no-habit-message">
                     Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
                 </p>
             </HabitsPageContainer>
@@ -38,7 +38,7 @@ const HabitsPageContainer = styled.div`
     height: calc(100vh - 140px);
     line-height: 29px;
     margin: 70px 0;
-    padding: 0 17px;
+    padding: 22px 17px;
 
     button {
         background-color: ${LIGHT_BLUE};
@@ -55,7 +55,7 @@ const HabitsPageContainer = styled.div`
     div {
         display: flex;
         justify-content: space-between;
-        padding: 22px 0;
+        margin-bottom: 22px;
     }
 
     p {

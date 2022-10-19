@@ -11,15 +11,15 @@ export default function HomePage() {
             <HeaderHome />
 
             <FormStyle>
-                <input placeholder="email" required type="email"/>
-                <input placeholder="senha" required type="password" />
+                <input data-identifier="input-email" placeholder="email" required type="email"/>
+                <input data-identifier="input-password" placeholder="senha" required type="password" />
 
-                <button>
+                <button data-identifier="login-btn">
                     Entrar
                 </button>
             </FormStyle>
 
-            <LinkStyle to={"/cadastro"}>
+            <LinkStyle data-identifier="sign-up-action" to={"/cadastro"}>
                 Não tem uma conta? Cadastre-se!
             </LinkStyle>
         </HomePageContainer>

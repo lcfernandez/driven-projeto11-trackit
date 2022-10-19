@@ -24,9 +24,18 @@ const FormStyle = styled.form`
     }
 
     button {
+        align-items: center;
         background-color: ${LIGHT_BLUE};
         border: none;
         color: ${WHITE};
+        cursor: pointer;
+        display: inherit;
+        justify-content: center;
+
+        :disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
     }
 
     input {
