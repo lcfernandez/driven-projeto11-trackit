@@ -6,13 +6,17 @@ import HeaderHome from "../../components/HeaderHome/HeaderHome";
 import { BASE_URL } from "../../constants/url";
 import { WHITE } from "../../constants/colors";
 
+import AvatarContext from "../../contexts/AvatarContext";
+
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
 export default function HomePage() {
+    const [, setAvatar] = useContext(AvatarContext);
+
     const [disabled, setDisabled] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,7 +35,12 @@ export default function HomePage() {
 
         axios
             .post(`${BASE_URL}/auth/login`, body)
-            .then(() => navigate("/habitos"))
+            .then(
+                (res) => {
+                    setAvatar(res.data.image)
+                    navigate("/habitos");
+                }
+            )
             .catch(
                 (err) => {
                     alert(err.response.data.message || err.response.data);

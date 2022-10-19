@@ -5,10 +5,10 @@ import HeaderApp from "../../components/HeaderApp/HeaderApp";
 
 import styled from "styled-components";
 
-export default function HabitsPage() {
+export default function HabitsPage({ avatar }) {
     return (
         <>
-            <HeaderApp />
+            <HeaderApp avatar={avatar} />
 
             <HabitsPageContainer>
                 <div>

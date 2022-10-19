@@ -1,10 +1,13 @@
-import avatar from "../../assets/img/avatar.png";
-
 import { DARK_BLUE, WHITE } from "../../constants/colors";
 
+import AvatarContext from "../../contexts/AvatarContext";
+
+import { useContext } from "react";
 import styled from "styled-components";
 
 export default function HeaderApp() {
+    const [avatar] = useContext(AvatarContext);
+    
     return (
         <HeaderAppContainer>
             <span>
