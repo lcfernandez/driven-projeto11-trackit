@@ -5,28 +5,30 @@ import HeaderHome from "../../components/HeaderHome/HeaderHome";
 
 import styled from "styled-components";
 
-export default function HomePage() {
+export default function SignUpPage() {
     return (
-        <HomePageContainer>
+        <SignUpPageContainer>
             <HeaderHome />
 
             <FormStyle>
-                <input placeholder="email" required type="email"/>
+                <input placeholder="email" required type="email" />
                 <input placeholder="senha" required type="password" />
+                <input placeholder="nome" type="text" />
+                <input placeholder="foto" type="url" />
 
                 <button>
-                    Entrar
+                    Cadastrar
                 </button>
             </FormStyle>
 
-            <LinkStyle to={"/cadastro"}>
-                Não tem uma conta? Cadastre-se!
+            <LinkStyle to={"/"}>
+                Já tem uma conta? Faça login!
             </LinkStyle>
-        </HomePageContainer>
+        </SignUpPageContainer>
     );
 }
 
-const HomePageContainer = styled.div`
+const SignUpPageContainer = styled.div`
     margin: 60px 36px;
     text-align: center;
 `;
