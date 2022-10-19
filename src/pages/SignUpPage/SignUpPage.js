@@ -38,7 +38,7 @@ export default function SignUpPage() {
             .then(() => navigate("/"))
             .catch(
                 (err) => {
-                    alert(err.response.data);
+                    alert(err.response.data.message || err.response.data);
                     setDisabled(false);
                 }
             )
@@ -72,6 +72,7 @@ export default function SignUpPage() {
                     disabled={disabled && true}
                     onChange={e => setName(e.target.value)}
                     placeholder="nome"
+                    required
                     type="text"
                     value={name}
                 />
@@ -80,6 +81,7 @@ export default function SignUpPage() {
                     disabled={disabled && true}
                     onChange={e => setImage(e.target.value)}
                     placeholder="foto"
+                    required
                     type="url"
                     value={image}
                 />
