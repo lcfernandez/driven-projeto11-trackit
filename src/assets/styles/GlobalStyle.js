@@ -64,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
     }
     /* project additions */
     body {
-        font-family: 'Lexend Deca', sans-serif;
+        font-family: "Lexend Deca", sans-serif;
     }
 `;
 
