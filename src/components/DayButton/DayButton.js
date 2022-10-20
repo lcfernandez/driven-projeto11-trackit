@@ -1,20 +1,35 @@
-import { ELEMENT_GRAY } from "../../constants/colors";
+import { ELEMENT_GRAY, WHITE } from "../../constants/colors";
 
+import { useState } from "react";
 import styled from "styled-components";
 
-export default function DayButton({ day }) {
+export default function DayButton({ day, id, selectedDays, setSelectedDays }) {
+    const [selected, setSelected] = useState(false);
+
+    function handleClick(e) {
+        e.preventDefault(); // prevent form redirect
+
+        if (selected) {
+            setSelectedDays(selectedDays.filter(selectedDay => selectedDay !== e.target.id));
+        } else {
+            setSelectedDays([...selectedDays, e.target.id]);
+        }
+
+        setSelected(!selected);
+    }
+
     return (
-        <DayButtonContainer disabled>
+        <DayButtonContainer id={id} onClick={handleClick} selected={selected}>
             {day}
         </DayButtonContainer>
     );
 }
 
 const DayButtonContainer = styled.button`
-    background-color: inherit;
+    background-color: ${({ selected }) => selected ? ELEMENT_GRAY : "inherit"};
     border: 1px solid ${ELEMENT_GRAY};
     border-radius: 5px;
-    color: ${ELEMENT_GRAY};
+    color: ${({ selected }) => selected ? WHITE: ELEMENT_GRAY};
     cursor: pointer;
     font-family: inherit;
     font-size: 20px;

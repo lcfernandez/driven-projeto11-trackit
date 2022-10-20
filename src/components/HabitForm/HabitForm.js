@@ -2,20 +2,28 @@ import DayButton from "../DayButton/DayButton";
 
 import { ELEMENT_GRAY, GRAY, LIGHT_BLUE, PLACEHOLDER, WHITE } from "../../constants/colors";
 
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function HabitForm() {
+    const [selectedDays, setSelectedDays] = useState([]);
+
+    const days = ["D", "S", "T", "Q", "Q", "S", "S"];
+
     return (
         <HabitFormContainer>
             <input placeholder="nome do hábito" />
 
-            <DayButton day="D" />
-            <DayButton day="S" />
-            <DayButton day="T" />
-            <DayButton day="Q" />
-            <DayButton day="Q" />
-            <DayButton day="S" />
-            <DayButton day="S" />
+            {days.map(
+                (day, index) =>
+                    <DayButton
+                        day={day}
+                        id={index + 1}
+                        key={index}
+                        selectedDays={selectedDays}
+                        setSelectedDays={setSelectedDays}
+                    />
+            )}
 
             <div>
                 <button disabled>
