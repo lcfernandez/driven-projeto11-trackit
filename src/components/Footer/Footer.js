@@ -1,12 +1,16 @@
 import { LIGHT_BLUE, WHITE } from "../../constants/colors";
+
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Footer() {
     return (
         <FooterContainer>
-            <span data-identifier="habit-page-action">
-                Hábitos
-            </span>
+            <Link to={"/habitos"}>
+                <span data-identifier="habit-page-action">
+                    Hábitos
+                </span>
+            </Link>
 
             <span data-identifier="historic-page-action">
                 Histórico
@@ -29,4 +33,12 @@ const FooterContainer = styled.div`
     position: fixed;
     width: 100%;
     z-index: 1;
+
+    a {
+        text-decoration: none;
+
+        :visited {
+            color: ${LIGHT_BLUE};
+        }
+    }
 `;

@@ -7,6 +7,7 @@ import { BASE_URL } from "../../constants/url";
 import { WHITE } from "../../constants/colors";
 
 import AvatarContext from "../../contexts/AvatarContext";
+import TokenContext from "../../contexts/TokenContext";
 
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,7 @@ import styled from "styled-components";
 
 export default function HomePage() {
     const [, setAvatar] = useContext(AvatarContext);
+    const [, setToken] = useContext(TokenContext);
 
     const [disabled, setDisabled] = useState(false);
     const [email, setEmail] = useState("");
@@ -38,7 +40,8 @@ export default function HomePage() {
             .then(
                 (res) => {
                     setAvatar(res.data.image)
-                    navigate("/habitos");
+                    setToken(res.data.token)
+                    navigate("/hoje");
                 }
             )
             .catch(
@@ -78,10 +81,7 @@ export default function HomePage() {
                     disabled={disabled && true}
                 >
                     {disabled ?
-                        <ThreeDots
-                            ariaLabel="three-dots-loading"
-                            color={WHITE}
-                        />
+                        <ThreeDots ariaLabel="three-dots-loading" color={WHITE} />
                     : "Entrar"}
                 </button>
             </FormStyle>
