@@ -1,4 +1,6 @@
-import { APP_BACKGROUND, DARK_BLUE, GRAY, LIGHT_BLUE, WHITE } from "../../constants/colors";
+import AddHabitButtonStyle from "../../assets/styles/AddHabbitStyle";
+
+import { APP_BACKGROUND, DARK_BLUE, GRAY } from "../../constants/colors";
 import { BASE_URL } from "../../constants/url";
 
 import Footer from "../../components/Footer/Footer";
@@ -55,9 +57,9 @@ export default function HabitsPage() {
                         Meus hábitos
                     </span>
 
-                    <button data-identifier="create-habit-btn" onClick={() => setHabitForm(true)}>
+                    <AddHabitButtonStyle data-identifier="create-habit-btn" onClick={() => setHabitForm(true)}>
                         +
-                    </button>
+                    </AddHabitButtonStyle>
                 </div>
 
                 {habitForm && <HabitForm />}
@@ -79,20 +81,7 @@ const HabitsPageContainer = styled.div`
     margin: 70px 0;
     padding: 22px 17px;
 
-    button {
-        background-color: ${LIGHT_BLUE};
-        border: none;
-        border-radius: 5px;
-        color: ${WHITE};
-        cursor: pointer;
-        display: inherit;
-        font-size: 26px;
-        height: 35px;
-        justify-content: center;
-        width: 40px;
-    }
-
-    div {
+    > div {
         display: flex;
         justify-content: space-between;
         margin-bottom: 22px;

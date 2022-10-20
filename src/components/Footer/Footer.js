@@ -35,10 +35,11 @@ const FooterContainer = styled.div`
     z-index: 1;
 
     a {
+        color: inherit;
         text-decoration: none;
 
         :visited {
-            color: ${LIGHT_BLUE};
+            color: inherit;
         }
     }
 `;

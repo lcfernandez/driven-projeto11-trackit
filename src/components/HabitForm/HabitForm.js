@@ -1,3 +1,5 @@
+import DayButton from "../DayButton/DayButton";
+
 import { ELEMENT_GRAY, GRAY, LIGHT_BLUE, PLACEHOLDER, WHITE } from "../../constants/colors";
 
 import styled from "styled-components";
@@ -7,15 +9,13 @@ export default function HabitForm() {
         <HabitFormContainer>
             <input placeholder="nome do hábito" />
 
-            <span>
-                <button disabled>D</button>
-                <button disabled>S</button>
-                <button disabled>T</button>
-                <button disabled>Q</button>
-                <button disabled>Q</button>
-                <button disabled>S</button>
-                <button disabled>S</button>
-            </span>
+            <DayButton day="D" />
+            <DayButton day="S" />
+            <DayButton day="T" />
+            <DayButton day="Q" />
+            <DayButton day="Q" />
+            <DayButton day="S" />
+            <DayButton day="S" />
 
             <div>
                 <button disabled>
@@ -34,6 +34,7 @@ const HabitFormContainer = styled.form`
     background-color: ${WHITE};
     border-radius: 5px;
     height: 180px;
+    margin-bottom: 30px;
     padding: 18px;
     width: 100%;
 
@@ -44,14 +45,23 @@ const HabitFormContainer = styled.form`
 
         button {
             align-items: center;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
             font-size: 16px;
+            height: 35px;
             line-height: 20px;
             width: 84px;
         }
-
-        button:first-child {
+    
+        button:nth-child(1) {
             background-color: inherit;
             color: ${LIGHT_BLUE};
+        }
+
+        button:nth-child(2) {
+            background-color: ${LIGHT_BLUE};
+            color: ${WHITE};
         }
     }
 
@@ -68,18 +78,6 @@ const HabitFormContainer = styled.form`
 
         ::placeholder {
             color: ${PLACEHOLDER};
-        }
-    }
-
-    span {
-        button {
-            background-color: inherit;
-            border: 1px solid ${ELEMENT_GRAY};
-            color: ${ELEMENT_GRAY};
-            font-size: 20px;
-            height: 30px;
-            margin: 8px 4px 0 0;
-            width: 30px;
         }
     }
 `;
