@@ -2,6 +2,7 @@ import { APP_BACKGROUND, DARK_BLUE, GRAY, LIGHT_BLUE, WHITE } from "../../consta
 import { BASE_URL } from "../../constants/url";
 
 import Footer from "../../components/Footer/Footer";
+import HabitForm from "../../components/HabitForm/HabitForm";
 import HeaderApp from "../../components/HeaderApp/HeaderApp";
 
 import TokenContext from "../../contexts/TokenContext";
@@ -14,6 +15,7 @@ import styled from "styled-components";
 export default function HabitsPage() {
     const [token] = useContext(TokenContext);
 
+    const [habitForm, setHabitForm] = useState(false);
     const [habits, setHabits] = useState(undefined);
 
     useEffect(() => {
@@ -53,10 +55,12 @@ export default function HabitsPage() {
                         Meus hábitos
                     </span>
 
-                    <button data-identifier="create-habit-btn">
+                    <button data-identifier="create-habit-btn" onClick={() => setHabitForm(true)}>
                         +
                     </button>
                 </div>
+
+                {habitForm && <HabitForm />}
 
                 {handleHabits()}                
             </HabitsPageContainer>
@@ -80,6 +84,7 @@ const HabitsPageContainer = styled.div`
         border: none;
         border-radius: 5px;
         color: ${WHITE};
+        cursor: pointer;
         display: inherit;
         font-size: 26px;
         height: 35px;
