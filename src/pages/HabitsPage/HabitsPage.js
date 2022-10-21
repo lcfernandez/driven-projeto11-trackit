@@ -26,7 +26,7 @@ export default function HabitsPage() {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
-        }
+        };
 
 		axios
             .get(`${BASE_URL}/habits`, config)

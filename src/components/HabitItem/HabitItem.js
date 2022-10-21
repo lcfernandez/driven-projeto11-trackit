@@ -50,12 +50,12 @@ export default function HabitItem({ days, habits, id, name, setHabits }) {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
-            }
+            };
 
             axios
                 .delete(`${BASE_URL}/habits/${id}`, config)
                 .then(() => setHabits(habits.filter(habit => habit.id !== id)))
-                .catch(err => alert(err.response.data.message || err.response.data))
+                .catch(err => alert(err.response.data.message || err.response.data));
         }
     }
 

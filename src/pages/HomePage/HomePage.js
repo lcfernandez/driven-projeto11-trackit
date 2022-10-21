@@ -39,8 +39,8 @@ export default function HomePage() {
             .post(`${BASE_URL}/auth/login`, body)
             .then(
                 (res) => {
-                    setAvatar(res.data.image)
-                    setToken(res.data.token)
+                    setAvatar(res.data.image);
+                    setToken(res.data.token);
                     navigate("/hoje");
                 }
             )
@@ -49,7 +49,7 @@ export default function HomePage() {
                     alert(err.response.data.message || err.response.data);
                     setDisabled(false);
                 }
-            )
+            );
     }
 
     return (

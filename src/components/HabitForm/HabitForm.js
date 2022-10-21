@@ -36,7 +36,7 @@ export default function HabitForm({ setHabitForm }) {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
-            }
+            };
 
             axios
                 .post(`${BASE_URL}/habits`, body, config)
@@ -51,7 +51,7 @@ export default function HabitForm({ setHabitForm }) {
                         alert(err.response.data.message || err.response.data);
                         setDisabled(false);
                     }
-                )
+                );
         }
     }
 

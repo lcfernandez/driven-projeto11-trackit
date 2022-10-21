@@ -41,7 +41,7 @@ export default function SignUpPage() {
                     alert(err.response.data.message || err.response.data);
                     setDisabled(false);
                 }
-            )
+            );
     }
 
     return (

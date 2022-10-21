@@ -17,14 +17,14 @@ export default function HabitToDo({ currentSequence, done, highestSequence, id, 
             headers: {
                 "Authorization": `Bearer ${token}`
             }
-        }
+        };
 
         let url = `${BASE_URL}/habits/${id}`;
 
         if (done) {
-            url += "/uncheck"
+            url += "/uncheck";
         } else {
-            url += "/check"
+            url += "/check";
         }
         
         axios
@@ -32,13 +32,13 @@ export default function HabitToDo({ currentSequence, done, highestSequence, id, 
             .then(
                 (res) => {
                     console.log(res);
-                }
+                } // remove?
             )
             .catch(
                 (err) => {
                     alert(err.response.data.message || err.response.data);
                 }
-            )
+            );
     }
 
     return (
