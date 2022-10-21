@@ -1,22 +1,63 @@
 import check from "../../assets/img/check.svg";
-import { GRAY, WHITE } from "../../constants/colors";
 
+import { GRAY, GREEN, WHITE } from "../../constants/colors";
+import { BASE_URL } from "../../constants/url";
+
+import TokenContext from "../../contexts/TokenContext";
+
+import { useContext } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
-export default function HabitToDo({ currentSequence, highestSequence, id, name }) {
+export default function HabitToDo({ currentSequence, done, highestSequence, id, name }) {
+    const [token] = useContext(TokenContext);
+
+    function handleCheck() {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+
+        let url = `${BASE_URL}/habits/${id}`;
+
+        if (done) {
+            url += "/uncheck"
+        } else {
+            url += "/check"
+        }
+        
+        axios
+            .post(url, {}, config)
+            .then(
+                (res) => {
+                    console.log(res);
+                }
+            )
+            .catch(
+                (err) => {
+                    alert(err.response.data.message || err.response.data);
+                }
+            )
+    }
+
     return (
-        <HabitToDoContainer data-identifier="today-infos">
+        <HabitToDoContainer data-identifier="today-infos" done={done}>
             <span>
                 {name}
 
                 <p>
-                    Sequência atual: {currentSequence} dias
+                    Sequência atual: <HighlightSequence done={done}>{currentSequence} dias</HighlightSequence>
                     <br />
-                    Seu recorde: {highestSequence} dias
+                    Seu recorde: {
+                        currentSequence === highestSequence ?
+                            <HighlightSequence done={done}>{highestSequence} dias</HighlightSequence>
+                            : `${highestSequence} dias`
+                    }
                 </p>
             </span>
 
-            <button data-identifier="done-habit-btn">
+            <button data-identifier="done-habit-btn" onClick={handleCheck}>
                 <img alt="Símbolo de check" src={check} />
             </button>
         </HabitToDoContainer>
@@ -35,8 +76,8 @@ const HabitToDoContainer = styled.li`
 
     button {
         align-items: center;
-        background-color: #EBEBEB;
-        border: 1px solid #E7E7E7;
+        background-color: ${({done}) => done ? GREEN : "#EBEBEB"};
+        border: 1px solid ${({done}) => done ? GREEN : "#E7E7E7"};
         border-radius: 5px;
         cursor: pointer;
         display: inherit;
@@ -50,4 +91,8 @@ const HabitToDoContainer = styled.li`
         line-height: 16px;
         margin-top: 7px;
     }
+`;
+
+const HighlightSequence = styled.span`
+    color: ${({done}) => done ? `${GREEN}` : "inherit"};
 `;

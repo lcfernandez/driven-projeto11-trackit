@@ -18,6 +18,8 @@ export const ELEMENT_GRAY = "#D4D4D4";
 
 export const GRAY = "#666666";
 
+export const GREEN = "#8FC549";
+
 export const LIGHT_BLUE = "#52B6FF";
 
 export const LIGHT_GRAY = "#BABABA";

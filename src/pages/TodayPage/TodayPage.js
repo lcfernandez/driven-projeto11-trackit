@@ -12,11 +12,16 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-
 export default function TodayPage() {
     const [token] = useContext(TokenContext);
 
     const [habitsToday, setHabitsToday] = useState(undefined);
+
+    const dayjs = require('dayjs');
+    
+    const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+    const weekDay = weekDays[dayjs().day()];
+    const date = dayjs().format('DD/MM');
 
     useEffect(() => {
         const config = {
@@ -29,7 +34,7 @@ export default function TodayPage() {
             .get(`${BASE_URL}/habits/today`, config)
             .then(res => setHabitsToday(res.data))
             .catch(err => alert(err.response.data.message || err.response.data));
-    }, [token]);
+    }, [habitsToday, token]);
 
     function handleHabitsToday() {
         if (!habitsToday) {
@@ -42,7 +47,9 @@ export default function TodayPage() {
                     habit =>
                         <HabitToDo
                             currentSequence={habit.currentSequence}
+                            done={habit.done}
                             highestSequence={habit.highestSequence}
+                            id={habit.id}
                             key={habit.id}
                             name={habit.name}
                         />
@@ -58,9 +65,10 @@ export default function TodayPage() {
             <TodayPageContainer>
                 <span data-identifier="today-infos">
                     <div>
-                        Segunda, 17/05
+                        {weekDay}, {date}
                     </div>
-                    Nenhum hábito concluído ainda{/* {handleProgress()} */}
+                    
+                    Nenhum hábito concluído ainda
                 </span>
                 
                 <HabitsTodoList>
