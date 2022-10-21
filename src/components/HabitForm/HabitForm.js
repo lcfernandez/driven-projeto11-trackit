@@ -94,7 +94,7 @@ export default function HabitForm({ setHabitForm }) {
                         <ThreeDots
                             ariaLabel="three-dots-loading"
                             color={WHITE}
-                            height="10"
+                            height="15"
                         />
                     : "Salvar"}
                 </button>
@@ -117,7 +117,6 @@ const HabitFormContainer = styled.form`
         margin-top: 30px;
 
         button {
-            align-items: center;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -142,6 +141,10 @@ const HabitFormContainer = styled.form`
             background-color: ${LIGHT_BLUE};
             color: ${WHITE};
             margin-left: 15px;
+            
+            div {
+                margin: auto;
+            }
         }
     }
 

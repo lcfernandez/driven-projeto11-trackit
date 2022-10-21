@@ -47,12 +47,20 @@ export default function HabitToDo({ currentSequence, done, highestSequence, id, 
                 {name}
 
                 <p>
-                    Sequência atual: <HighlightSequence done={done}>{currentSequence} dias</HighlightSequence>
+                    Sequência atual: {
+                        <HighlightSequence done={done}>
+                            {currentSequence} {currentSequence === 1 ? "dia" : "dias"}
+                        </HighlightSequence>
+                    }
+
                     <br />
+
                     Seu recorde: {
                         currentSequence === highestSequence ?
-                            <HighlightSequence done={done}>{highestSequence} dias</HighlightSequence>
-                            : `${highestSequence} dias`
+                            <HighlightSequence done={done}>
+                                {highestSequence} {highestSequence === 1 ? "dia" : "dias"}
+                            </HighlightSequence>
+                            : `${highestSequence} ${highestSequence === 1 ? "dia" : "dias"}`
                     }
                 </p>
             </span>
