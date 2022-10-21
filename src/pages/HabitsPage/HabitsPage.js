@@ -44,7 +44,11 @@ export default function HabitsPage() {
                 </p>
             );
         } else {
-            return habits.map(habit => <HabitItem days={habit.days} key={habit.id} name={habit.name} />);
+            return (
+                habits.map(
+                    habit => <HabitItem days={habit.days} id={habit.id} key={habit.id} name={habit.name} />
+                )
+            );
         }
     }
 

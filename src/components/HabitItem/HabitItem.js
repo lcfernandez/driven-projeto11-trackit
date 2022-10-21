@@ -1,9 +1,18 @@
+import trashBin from "../../assets/img/trash-bin.svg";
+
+import { BASE_URL } from "../../constants/url";
 import { GRAY, WHITE } from "../../constants/colors";
 
+import TokenContext from "../../contexts/TokenContext";
+
+import { useContext } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import DayButton from "../DayButton/DayButton";
 
-export default function HabitItem({ days, name }) {
+export default function HabitItem({ days, id, name }) {
+    const [token] = useContext(TokenContext);
+
     const daysButtons = [
         {
             label: "D",
@@ -35,6 +44,22 @@ export default function HabitItem({ days, name }) {
         }
     ];
 
+    function handleRemoveHabit() {
+        if (window.confirm("Gostaria realmente de apagar o hábito?")) {
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+
+            axios
+                .delete(`${BASE_URL}/habits/${id}`, config)
+                /* .then(
+                ) */
+                .catch(err => alert(err.response.data.message || err.response.data))
+        }
+    }
+
     return (
         <HabitItemContainer>
             <span data-identifier="habit-name">
@@ -52,6 +77,13 @@ export default function HabitItem({ days, name }) {
                         />
                 )}
             </div>
+
+            <RemoveButton
+                alt="Botão de exclusão"
+                data-identifier="delete-habit-btn"
+                onClick={handleRemoveHabit}
+                src={trashBin}
+            />
         </HabitItemContainer>
     );
 }
@@ -61,5 +93,15 @@ const HabitItemContainer = styled.div`
     color: ${GRAY};
     flex-direction: column;
     font-size: 20px;
-    padding: 18px;
+    padding: 15px;
+    position: relative;
+    word-wrap: break-word;
+`;
+
+const RemoveButton = styled.img`
+    cursor: pointer;
+    height: 15px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 `;
