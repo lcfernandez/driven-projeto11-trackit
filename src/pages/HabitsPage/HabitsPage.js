@@ -1,6 +1,6 @@
 import AddHabitButtonStyle from "../../assets/styles/AddHabbitStyle";
 
-import { APP_BACKGROUND, DARK_BLUE, GRAY } from "../../constants/colors";
+import { BACKGROUND, DARK_BLUE, GRAY } from "../../constants/colors";
 import { BASE_URL } from "../../constants/url";
 
 import Footer from "../../components/Footer/Footer";
@@ -43,7 +43,7 @@ export default function HabitsPage() {
                 </p>
             );
         } else {
-            return habits.map(e => e);
+            return habits.map(e => e.name);
         }
     }
 
@@ -62,9 +62,9 @@ export default function HabitsPage() {
                     </AddHabitButtonStyle>
                 </div>
 
-                {habitForm && <HabitForm />}
+                {habitForm && <HabitForm setHabitForm={setHabitForm} />}
 
-                {handleHabits()}                
+                {handleHabits()}
             </HabitsPageContainer>
 
             <Footer />
@@ -73,7 +73,7 @@ export default function HabitsPage() {
 }
 
 const HabitsPageContainer = styled.div`
-    background-color: ${APP_BACKGROUND};
+    background-color: ${BACKGROUND};
     color: ${DARK_BLUE};
     font-size: 22px;
     height: calc(100vh - 140px);

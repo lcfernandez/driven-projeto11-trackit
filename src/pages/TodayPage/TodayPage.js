@@ -1,4 +1,4 @@
-import { APP_BACKGROUND, DARK_BLUE, LIGHT_GRAY } from "../../constants/colors";
+import { BACKGROUND, DARK_BLUE, LIGHT_GRAY } from "../../constants/colors";
 import { BASE_URL } from "../../constants/url";
 
 import Footer from "../../components/Footer/Footer";
@@ -35,7 +35,7 @@ export default function TodayPage() {
         } else if (habitsToday.length === 0) {
             return "Nenhum hábito concluído ainda";
         } else {
-            return habitsToday.map(e => e);
+            return habitsToday.map(e => e.name);
         }
     }
 
@@ -57,7 +57,7 @@ export default function TodayPage() {
 }
 
 const TodayPageContainer = styled.div`
-    background-color: ${APP_BACKGROUND};
+    background-color: ${BACKGROUND};
     color: ${LIGHT_GRAY};
     font-size: 18px;
     height: calc(100vh - 140px);

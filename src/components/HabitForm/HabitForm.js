@@ -1,37 +1,102 @@
 import DayButton from "../DayButton/DayButton";
 
-import { ELEMENT_GRAY, GRAY, LIGHT_BLUE, PLACEHOLDER, WHITE } from "../../constants/colors";
+import { BACKGROUND, DISABLED_GRAY, ELEMENT_GRAY, GRAY, LIGHT_BLUE, PLACEHOLDER, WHITE } from "../../constants/colors";
+import { BASE_URL } from "../../constants/url";
 
-import { useState } from "react";
+import TokenContext from "../../contexts/TokenContext";
+
+import { ThreeDots } from "react-loader-spinner";
+import { useContext, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
-export default function HabitForm() {
-    const [selectedDays, setSelectedDays] = useState([]);
+export default function HabitForm({ setHabitForm }) {
+    const [token] = useContext(TokenContext);
 
-    const days = ["D", "S", "T", "Q", "Q", "S", "S"];
+    const [days, setDays] = useState([]);
+    const [disabled, setDisabled] = useState(false);
+    const [name, setName] = useState([]);
+
+    const dayNames = ["D", "S", "T", "Q", "Q", "S", "S"];
+
+    function createHabit(e) {
+        e.preventDefault(); // prevent form redirect
+
+        if (days.length === 0) {
+            alert("Selecione pelo menos um dia da semana.");
+        } else {
+            setDisabled(true);
+
+            const body = {
+                name,
+                days
+            };
+
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+
+            axios
+                .post(`${BASE_URL}/habits`, body, config)
+                .then(
+                    () => {
+                        setDisabled(false)
+                        setHabitForm(false)
+                    }
+                )
+                .catch(
+                    (err) => {
+                        alert(err.response.data.message || err.response.data);
+                        setDisabled(false);
+                    }
+                )
+        }
+    }
 
     return (
-        <HabitFormContainer>
-            <input placeholder="nome do hábito" />
+        <HabitFormContainer onSubmit={createHabit}>
+            <input
+                data-identifier="input-habit-name"
+                disabled={disabled && true}
+                onChange={e => setName(e.target.value)}
+                placeholder="nome do hábito"
+                required
+                type="text"
+                value={name}
+            />
 
-            {days.map(
+            {dayNames.map(
                 (day, index) =>
                     <DayButton
                         day={day}
-                        id={index + 1}
+                        days={days}
+                        disabled={disabled}
+                        id={index}
                         key={index}
-                        selectedDays={selectedDays}
-                        setSelectedDays={setSelectedDays}
+                        setDays={setDays}
                     />
             )}
 
             <div>
-                <button disabled>
+                <button
+                    data-identifier="cancel-habit-create-btn"
+                    disabled={disabled && true}
+                    onClick={() => setHabitForm(false)}
+                    type="button"
+                >
                     Cancelar
                 </button>
 
-                <button disabled>
-                    Salvar
+                <button data-identifier="save-habit-create-btn" disabled={disabled && true}>
+                    {disabled ?
+                        <ThreeDots
+                            ariaLabel="three-dots-loading"
+                            color={WHITE}
+                            height="10"
+                        />
+                    : "Salvar"}
                 </button>
             </div>
         </HabitFormContainer>
@@ -46,7 +111,7 @@ const HabitFormContainer = styled.form`
     padding: 18px;
     width: 100%;
 
-    div {
+    > div {
         display: flex;
         justify-content: flex-end;
         margin-top: 30px;
@@ -55,11 +120,17 @@ const HabitFormContainer = styled.form`
             align-items: center;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
             font-family: inherit;
             font-size: 16px;
             height: 35px;
             line-height: 20px;
             width: 84px;
+
+            :disabled {
+                cursor: default;
+                opacity: 0.7;
+            }
         }
     
         button:nth-child(1) {
@@ -70,6 +141,7 @@ const HabitFormContainer = styled.form`
         button:nth-child(2) {
             background-color: ${LIGHT_BLUE};
             color: ${WHITE};
+            margin-left: 15px;
         }
     }
 
@@ -83,6 +155,11 @@ const HabitFormContainer = styled.form`
         line-height: 25px;
         padding: 10px;
         width: 100%;
+
+        :disabled {
+            background-color: ${BACKGROUND};
+            color: ${DISABLED_GRAY};
+        }
 
         ::placeholder {
             color: ${PLACEHOLDER};

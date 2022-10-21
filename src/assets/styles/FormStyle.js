@@ -1,4 +1,4 @@
-import { ELEMENT_GRAY, GRAY, LIGHT_BLUE, PLACEHOLDER, WHITE } from "../../constants/colors";
+import { BACKGROUND, DISABLED_GRAY, ELEMENT_GRAY, GRAY, LIGHT_BLUE, PLACEHOLDER, WHITE } from "../../constants/colors";
 
 import styled from "styled-components";
 
@@ -40,6 +40,11 @@ const FormStyle = styled.form`
         border: 1px solid ${ELEMENT_GRAY};
         color: ${GRAY};
         padding: 10px;
+
+        :disabled {
+            background-color: ${BACKGROUND};
+            color: ${DISABLED_GRAY};
+        }
 
         ::placeholder {
             color: ${PLACEHOLDER};
