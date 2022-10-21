@@ -3,7 +3,7 @@ import { ELEMENT_GRAY, SELECTION, WHITE } from "../../constants/colors";
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function DayButton({ day, days, disabled, id, setDays }) {
+export default function DayButton({ createdSelected, day, days, disabled, id, setDays }) {
     const [selected, setSelected] = useState(false);
 
     function handleClick(e) {
@@ -24,7 +24,7 @@ export default function DayButton({ day, days, disabled, id, setDays }) {
             disabled={disabled && true}
             id={id}
             onClick={handleClick}
-            selected={selected}
+            selected={selected || createdSelected}
         >
             {day}
         </DayButtonContainer>

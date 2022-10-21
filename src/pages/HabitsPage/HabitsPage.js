@@ -5,6 +5,7 @@ import { BASE_URL } from "../../constants/url";
 
 import Footer from "../../components/Footer/Footer";
 import HabitForm from "../../components/HabitForm/HabitForm";
+import HabitItem from "../../components/HabitItem/HabitItem";
 import HeaderApp from "../../components/HeaderApp/HeaderApp";
 
 import TokenContext from "../../contexts/TokenContext";
@@ -43,7 +44,7 @@ export default function HabitsPage() {
                 </p>
             );
         } else {
-            return habits.map(e => e.name);
+            return habits.map(habit => <HabitItem days={habit.days} key={habit.id} name={habit.name} />);
         }
     }
 
