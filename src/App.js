@@ -4,6 +4,7 @@ import AvatarContext from "./contexts/AvatarContext";
 import TokenContext from "./contexts/TokenContext";
 
 import HabitsPage from "./pages/HabitsPage/HabitsPage";
+import HistoryPage from "./pages/HistoryPage/HistoryPage";
 import HomePage from "./pages/HomePage/HomePage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import TodayPage from "./pages/TodayPage/TodayPage";
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/cadastro" element={<SignUpPage />} />
                     <Route path="/habitos" element={<HabitsPage />} />
+                    <Route path="/historico" element={<HistoryPage />} />
                     <Route path="/hoje" element={<TodayPage />} />
                 </Routes>
             </TokenContext.Provider>

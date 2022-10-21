@@ -102,7 +102,7 @@ const HabitsPageContainer = styled.div`
 
     p {
         color: ${GRAY};
-        font-size: 17.976px;
+        font-size: 18px;
         line-height: 22px;
     }
 `;

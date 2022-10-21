@@ -12,9 +12,11 @@ export default function Footer() {
                 </span>
             </Link>
 
-            <span data-identifier="historic-page-action">
-                Histórico
-            </span>
+            <Link to={"/historico"}>
+                <span data-identifier="historic-page-action">
+                    Histórico
+                </span>
+            </Link>
         </FooterContainer>
     );
 }
