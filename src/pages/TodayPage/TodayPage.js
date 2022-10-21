@@ -2,6 +2,7 @@ import { BACKGROUND, DARK_BLUE, LIGHT_GRAY } from "../../constants/colors";
 import { BASE_URL } from "../../constants/url";
 
 import Footer from "../../components/Footer/Footer";
+import HabitToDo from "../../components/HabitToDo/HabitsToDo";
 import HeaderApp from "../../components/HeaderApp/HeaderApp";
 
 import TokenContext from "../../contexts/TokenContext";
@@ -10,6 +11,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+
 
 export default function TodayPage() {
     const [token] = useContext(TokenContext);
@@ -33,9 +35,19 @@ export default function TodayPage() {
         if (!habitsToday) {
             return <ThreeDots ariaLabel="three-dots-loading" color={DARK_BLUE} />;
         } else if (habitsToday.length === 0) {
-            return "Nenhum hábito concluído ainda";
+            return "Você não tem nenhum hábito para hoje.";
         } else {
-            return habitsToday.map(e => e.name);
+            return (
+                habitsToday.map(
+                    habit =>
+                        <HabitToDo
+                            currentSequence={habit.currentSequence}
+                            highestSequence={habit.highestSequence}
+                            key={habit.id}
+                            name={habit.name}
+                        />
+                )
+            );
         }
     }
 
@@ -44,17 +56,26 @@ export default function TodayPage() {
             <HeaderApp />
 
             <TodayPageContainer>
-                <div>
-                    Segunda, 17/05
-                </div>
+                <span data-identifier="today-infos">
+                    <div>
+                        Segunda, 17/05
+                    </div>
+                    Nenhum hábito concluído ainda{/* {handleProgress()} */}
+                </span>
                 
-                {handleHabitsToday()}
+                <HabitsTodoList>
+                    {handleHabitsToday()}
+                </HabitsTodoList>
             </TodayPageContainer>
 
             <Footer />
         </>
     );
 }
+
+const HabitsTodoList = styled.ul`
+    margin: 28px 0;
+`;
 
 const TodayPageContainer = styled.div`
     background-color: ${BACKGROUND};
