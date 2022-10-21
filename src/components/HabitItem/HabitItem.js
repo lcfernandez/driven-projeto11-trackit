@@ -10,7 +10,7 @@ import axios from "axios";
 import styled from "styled-components";
 import DayButton from "../DayButton/DayButton";
 
-export default function HabitItem({ days, id, name }) {
+export default function HabitItem({ days, habits, id, name, setHabits }) {
     const [token] = useContext(TokenContext);
 
     const daysButtons = [
@@ -54,8 +54,7 @@ export default function HabitItem({ days, id, name }) {
 
             axios
                 .delete(`${BASE_URL}/habits/${id}`, config)
-                /* .then(
-                ) */
+                .then(() => setHabits(habits.filter(habit => habit.id !== id)))
                 .catch(err => alert(err.response.data.message || err.response.data))
         }
     }
@@ -93,6 +92,7 @@ const HabitItemContainer = styled.div`
     color: ${GRAY};
     flex-direction: column;
     font-size: 20px;
+    margin-bottom: 10px;
     padding: 15px;
     position: relative;
     word-wrap: break-word;

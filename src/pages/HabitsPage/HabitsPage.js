@@ -32,7 +32,7 @@ export default function HabitsPage() {
             .get(`${BASE_URL}/habits`, config)
             .then(res => setHabits(res.data))
             .catch(err => alert(err.response.data.message || err.response.data));
-    }, [token]);
+    }, [habitForm, habits, token]);
 
     function handleHabits() {
         if (!habits) {
@@ -46,7 +46,15 @@ export default function HabitsPage() {
         } else {
             return (
                 habits.map(
-                    habit => <HabitItem days={habit.days} id={habit.id} key={habit.id} name={habit.name} />
+                    habit =>
+                        <HabitItem
+                            days={habit.days}
+                            habits={habits}
+                            id={habit.id}
+                            key={habit.id}
+                            name={habit.name}
+                            setHabits={setHabits}
+                        />
                 )
             );
         }
@@ -86,7 +94,7 @@ const HabitsPageContainer = styled.div`
     margin: 70px 0;
     padding: 22px 17px;
 
-    > div {
+    div:nth-child(1) {
         display: flex;
         justify-content: space-between;
         margin-bottom: 22px;
