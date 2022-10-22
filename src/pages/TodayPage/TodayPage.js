@@ -1,4 +1,4 @@
-import { BACKGROUND, DARK_BLUE, GREEN, LIGHT_GRAY } from "../../constants/colors";
+import { BACKGROUND, DARK_BLUE, GRAY, GREEN, LIGHT_GRAY } from "../../constants/colors";
 import { BASE_URL } from "../../constants/url";
 
 import Footer from "../../components/Footer/Footer";
@@ -56,7 +56,7 @@ export default function TodayPage() {
         if (!habitsToday) {
             return <ThreeDots ariaLabel="three-dots-loading" color={DARK_BLUE} />;
         } else if (habitsToday.length === 0) {
-            return "Você não tem nenhum hábito para hoje.";
+            return <p>Você não tem nenhum hábito para hoje.</p>;
         } else {
             return (
                 habitsToday.map(
@@ -97,6 +97,12 @@ export default function TodayPage() {
 
 const HabitsTodoList = styled.ul`
     margin-top: 28px;
+
+    > p {
+        color: ${GRAY};
+        font-size: 18px;
+        line-height: 22px;
+    }
 `;
 
 const TodayPageContainer = styled.div`
