@@ -4,15 +4,15 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export default function DayButton({ createdSelected, day, days, disabled, id, setDays }) {
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(days && days.includes(id));
 
     function handleClick(e) {
         e.preventDefault(); // prevent form redirect
 
         if (selected) {
-            setDays(days.filter(selectedDay => selectedDay !== e.target.id));
+            setDays(days.filter(selectedDay => selectedDay !== Number(e.target.id)));
         } else {
-            setDays([...days, e.target.id]);
+            setDays([...days, Number(e.target.id)]);
         }
 
         setSelected(!selected);

@@ -15,6 +15,8 @@ import { useState } from "react";
 
 function App() {
     const [avatar, setAvatar] = useState("");
+    const [days, setDays] = useState([]);
+    const [name, setName] = useState("");
     const [progress, setProgress] = useState(0);
     const [token, setToken] = useState("");
     
@@ -28,7 +30,17 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/cadastro" element={<SignUpPage />} />
-                    <Route path="/habitos" element={<HabitsPage />} />
+                    <Route
+                        path="/habitos"
+                        element={
+                            <HabitsPage
+                                days={days}
+                                name={name}
+                                setDays={setDays}
+                                setName={setName}
+                            />
+                        }
+                    />
                     <Route path="/historico" element={<HistoryPage />} />
                     <Route path="/hoje" element={<TodayPage />} />
                 </Routes>

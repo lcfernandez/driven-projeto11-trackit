@@ -15,7 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function HabitsPage() {
+export default function HabitsPage({ days, name, setDays, setName }) {
     const [token] = useContext(TokenContext);
 
     const [habitForm, setHabitForm] = useState(false);
@@ -61,27 +61,33 @@ export default function HabitsPage() {
     }
 
     return (
-        <>
+        <HabitsPageContainer>
             <HeaderApp />
 
-            <HabitsPageContainer>
-                <div>
-                    <span>
-                        Meus hábitos
-                    </span>
+            <div>
+                <span>
+                    Meus hábitos
+                </span>
 
-                    <AddHabitButtonStyle data-identifier="create-habit-btn" onClick={() => setHabitForm(true)}>
-                        +
-                    </AddHabitButtonStyle>
-                </div>
+                <AddHabitButtonStyle data-identifier="create-habit-btn" onClick={() => setHabitForm(true)}>
+                    +
+                </AddHabitButtonStyle>
+            </div>
 
-                {habitForm && <HabitForm setHabitForm={setHabitForm} />}
+            {habitForm &&
+                <HabitForm
+                    days={days}
+                    name={name}
+                    setDays={setDays}
+                    setHabitForm={setHabitForm}
+                    setName={setName}
+                />
+            }
 
-                {handleHabits()}
-            </HabitsPageContainer>
+            {handleHabits()}
 
             <Footer />
-        </>
+        </HabitsPageContainer>
     );
 }
 
@@ -89,12 +95,12 @@ const HabitsPageContainer = styled.div`
     background-color: ${BACKGROUND};
     color: ${DARK_BLUE};
     font-size: 22px;
-    height: calc(100vh - 140px);
+    min-height: calc(100vh - 140px);
     line-height: 29px;
     margin: 70px 0;
     padding: 22px 17px;
 
-    div:nth-child(1) {
+    > div:nth-child(2) {
         display: flex;
         justify-content: space-between;
         margin-bottom: 22px;

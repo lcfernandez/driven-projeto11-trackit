@@ -21,8 +21,7 @@ export default function TodayPage() {
 
     const dayjs = require('dayjs');
     
-    const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-    const weekDay = weekDays[dayjs().day()];
+    const weekDay = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"][dayjs().day()];
     const date = dayjs().format('DD/MM');
 
     useEffect(() => {
@@ -76,44 +75,44 @@ export default function TodayPage() {
     }
 
     return (
-        <>
+        <TodayPageContainer progress={progress}>
             <HeaderApp />
 
-            <TodayPageContainer progress={progress}>
-                <span data-identifier="today-infos">
-                    <div>
-                        {weekDay}, {date}
-                    </div>
-                    
-                    {progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
-                </span>
+            <span data-identifier="today-infos">
+                <div>
+                    {weekDay}, {date}
+                </div>
                 
-                <HabitsTodoList>
-                    {handleHabitsToday()}
-                </HabitsTodoList>
-            </TodayPageContainer>
+                {progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
+            </span>
+            
+            <HabitsTodoList>
+                {handleHabitsToday()}
+            </HabitsTodoList>
 
             <Footer />
-        </>
+        </TodayPageContainer>
     );
 }
 
 const HabitsTodoList = styled.ul`
-    margin: 28px 0;
+    margin-top: 28px;
 `;
 
 const TodayPageContainer = styled.div`
     background-color: ${BACKGROUND};
     color: ${({progress}) => progress > 0 ? GREEN : LIGHT_GRAY};
     font-size: 18px;
-    height: calc(100vh - 140px);
+    min-height: calc(100vh - 140px);
     line-height: 22px;
     margin: 70px 0;
     padding: 22px 17px;
 
-    div:nth-child(1) {
-        color: ${DARK_BLUE};
-        font-size: 22px;
-        line-height: 29px;
+    span {
+        div {
+            color: ${DARK_BLUE};
+            font-size: 22px;
+            line-height: 29px;
+        }
     }
 `;

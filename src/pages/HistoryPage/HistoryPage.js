@@ -7,21 +7,19 @@ import styled from "styled-components";
 
 export default function HistoryPage() {
     return (
-        <>
+        <HistoryPageContainer>
             <HeaderApp />
 
-            <HistoryPageContainer>
-                <div>
-                    Histórico
-                </div>
+            <div>
+                Histórico
+            </div>
 
-                <p>
-                    Em breve você poderá ver o histórico dos seus hábitos aqui!
-                </p>
-            </HistoryPageContainer>
+            <p>
+                Em breve você poderá ver o histórico dos seus hábitos aqui!
+            </p>
 
             <Footer />
-        </>
+        </HistoryPageContainer>
     );
 }
 
@@ -29,7 +27,7 @@ const HistoryPageContainer = styled.div`
     background-color: ${BACKGROUND};
     color: ${DARK_BLUE};
     font-size: 22px;
-    height: calc(100vh - 140px);
+    min-height: calc(100vh - 140px);
     line-height: 29px;
     margin: 70px 0;
     padding: 22px 17px;

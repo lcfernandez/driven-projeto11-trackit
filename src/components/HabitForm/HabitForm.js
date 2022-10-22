@@ -10,12 +10,10 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function HabitForm({ setHabitForm }) {
+export default function HabitForm({ days, name, setDays, setHabitForm, setName }) {
     const [token] = useContext(TokenContext);
 
-    const [days, setDays] = useState([]);
     const [disabled, setDisabled] = useState(false);
-    const [name, setName] = useState([]);
 
     const dayNames = ["D", "S", "T", "Q", "Q", "S", "S"];
 
@@ -42,8 +40,10 @@ export default function HabitForm({ setHabitForm }) {
                 .post(`${BASE_URL}/habits`, body, config)
                 .then(
                     () => {
-                        setDisabled(false)
-                        setHabitForm(false)
+                        setDays([]);
+                        setDisabled(false);
+                        setHabitForm(false);
+                        setName("");
                     }
                 )
                 .catch(
