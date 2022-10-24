@@ -52,7 +52,7 @@ export default function TodayPage() {
                     );
                 }
             );
-    }, [habitsToday, setProgress, token]);
+    }, [habitsToday]);
 
     function handleHabitsToday() {
         if (!habitsToday) {
