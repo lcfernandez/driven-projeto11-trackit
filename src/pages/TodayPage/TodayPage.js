@@ -22,7 +22,7 @@ export default function TodayPage() {
     const [habitsToday, setHabitsToday] = useState(undefined);
 
     const dayjs = require("dayjs");
-    const date = dayjs().locale("pt-br").format("dddd, DD/MM");
+    const date = dayjs().locale("pt-br").format("dddd, DD/MM").replace("-feira", "");
 
     useEffect(() => {
         const config = {
