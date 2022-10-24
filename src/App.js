@@ -19,7 +19,11 @@ function App() {
         localStorage.getItem("avatar") || ""
     );
     const [days, setDays] = useState([]);
-    const [historyDetails, setHistoryDetails] = useState(undefined);
+    const [historyDetails, setHistoryDetails] = useState(
+        localStorage.getItem("historyDetails")
+        ? JSON.parse(localStorage.getItem("historyDetails"))
+        : undefined
+    );
     const [name, setName] = useState("");
     const [progress, setProgress] = useState(
         localStorage.getItem("progress") || 0
@@ -36,7 +40,15 @@ function App() {
             <ProgressContext.Provider value={[progress, setProgress]}>
             <TokenContext.Provider value={[token, setToken]}>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
+                    <Route
+                        path="/"
+                        element={
+                            <HomePage
+                                setHistoryDetails={setHistoryDetails}
+                                setProgress={setProgress}
+                            />
+                        }
+                    />
                     <Route path="/cadastro" element={<SignUpPage />} />
                     <Route
                         path="/habitos"

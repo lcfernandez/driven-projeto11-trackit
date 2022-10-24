@@ -71,6 +71,8 @@ export default function HistoryPage({ setHistoryDetails }) {
 
             if (habitsDay) {
                 setHistoryDetails(habitsDay);
+                const habitsDaySerialized = JSON.stringify(habitsDay);
+                localStorage.setItem("historyDetails", habitsDaySerialized);
                 navigate("/historico/detalhes");
             }
         }

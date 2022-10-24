@@ -15,7 +15,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function HomePage() {
+export default function HomePage({ setHistoryDetails, setProgress }) {
     const [, setAvatar] = useContext(AvatarContext);
     const [, setToken] = useContext(TokenContext);
 
@@ -43,6 +43,17 @@ export default function HomePage() {
                     localStorage.setItem("avatar", res.data.image);
                     setToken(res.data.token);
                     localStorage.setItem("token", res.data.token);
+
+                    if (localStorage.getItem("historyDetails")) {
+                        localStorage.removeItem("historyDetails");
+                        setHistoryDetails(undefined);
+                    }
+
+                    if (localStorage.getItem("progress")) {
+                        localStorage.removeItem("progress");
+                        setProgress(0);
+                    }
+                    
                     navigate("/hoje");
                 }
             )

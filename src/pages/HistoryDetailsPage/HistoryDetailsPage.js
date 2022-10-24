@@ -6,8 +6,6 @@ import HeaderApp from "../../components/HeaderApp/HeaderApp";
 import styled from "styled-components";
 
 export default function HistoryDetailsPage({ historyDetails }) {
-
-
     function handleHistoryDetails() {
         if (!historyDetails) {
             return <p>Nenhum dia com histórico foi selecionado.</p>;
