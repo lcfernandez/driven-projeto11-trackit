@@ -30,7 +30,7 @@ export default function HistoryDetailsPage({ historyDetails }) {
             <HeaderApp />
 
             <div>
-                Detalhes do Histórico {historyDetails && ` - ${historyDetails.day}`}
+                Histórico do dia{historyDetails && `: ${historyDetails.day}`}
             </div>
 
             {handleHistoryDetails()}
