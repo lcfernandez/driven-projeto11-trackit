@@ -1,4 +1,4 @@
-import { BACKGROUND, DARK_BLUE, GRAY } from "../../constants/colors";
+import { BACKGROUND, DARK_BLUE } from "../../constants/colors";
 
 import Footer from "../../components/Footer/Footer";
 import HeaderApp from "../../components/HeaderApp/HeaderApp";
@@ -7,19 +7,23 @@ import { BASE_URL } from "../../constants/url";
 
 import TokenContext from "../../contexts/TokenContext";
 
-import Calendar from "react-calendar";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Calendar from "react-calendar";
 import axios from "axios";
 import styled from "styled-components";
 
 import "react-calendar/dist/Calendar.css";
 
-export default function HistoryPage() {
+export default function HistoryPage({ setHistoryDetails }) {
     const [token] = useContext(TokenContext);
 
     const [completedDays, setCompletedDays] = useState([]);
+    const [habits, setHabits] = useState(undefined);
     const [incompletedDays, setIncompletedDays] = useState([]);
     const [value, onChange] = useState(new Date());
+
+    const navigate = useNavigate();
 
     const dayjs = require("dayjs");
     const isToday = require("dayjs/plugin/isToday");
@@ -48,6 +52,7 @@ export default function HistoryPage() {
                     );
 
                     setCompletedDays(completedArray);
+                    setHabits(res.data);
                     setIncompletedDays(incompletedArray);
                 }
             )
@@ -60,6 +65,17 @@ export default function HistoryPage() {
             );
     }, [token]);
 
+    function onClickDay(date) {
+        if (habits && !dayjs(date).isToday()) {
+            const habitsDay = habits.find(day => day.day === dayjs(date).format("DD/MM/YYYY"));
+
+            if (habitsDay) {
+                setHistoryDetails(habitsDay);
+                navigate("/historico/detalhes");
+            }
+        }
+    }
+
     return (
         <HistoryPageContainer>
             <HeaderApp />
@@ -71,6 +87,7 @@ export default function HistoryPage() {
             <CalendarStyled
                 calendarType="US"
                 onChange={onChange}
+                onClickDay={(date) => onClickDay(date)}
                 tileClassName={
                     ({ date }) => {
                         if (!dayjs(date).isToday()) {
@@ -123,13 +140,6 @@ const HistoryPageContainer = styled.div`
     line-height: 29px;
     margin: 70px 0;
     padding: 22px 17px;
-
-    p {
-        color: ${GRAY};
-        font-size: 18px;
-        line-height: 22px;
-        margin-top: 17px;
-    }
 
     div {
         border: none;

@@ -6,6 +6,7 @@ import TokenContext from "./contexts/TokenContext";
 
 import HabitsPage from "./pages/HabitsPage/HabitsPage";
 import HistoryPage from "./pages/HistoryPage/HistoryPage";
+import HistoryDetailsPage from "./pages/HistoryDetailsPage/HistoryDetailsPage";
 import HomePage from "./pages/HomePage/HomePage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import TodayPage from "./pages/TodayPage/TodayPage";
@@ -18,6 +19,7 @@ function App() {
         localStorage.getItem("avatar") || ""
     );
     const [days, setDays] = useState([]);
+    const [historyDetails, setHistoryDetails] = useState(undefined);
     const [name, setName] = useState("");
     const [progress, setProgress] = useState(0);
     const [token, setToken] = useState(
@@ -45,7 +47,22 @@ function App() {
                             />
                         }
                     />
-                    <Route path="/historico" element={<HistoryPage />} />
+                    <Route
+                        path="/historico"
+                        element={
+                            <HistoryPage
+                                setHistoryDetails={setHistoryDetails}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/historico/detalhes"
+                        element={
+                            <HistoryDetailsPage
+                            historyDetails={historyDetails}
+                            />
+                        }
+                    />
                     <Route path="/hoje" element={<TodayPage />} />
                 </Routes>
             </TokenContext.Provider>
