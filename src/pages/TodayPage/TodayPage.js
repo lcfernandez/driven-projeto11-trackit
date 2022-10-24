@@ -39,7 +39,9 @@ export default function TodayPage() {
 
                     if (habitsToday && habitsToday.length > 0) {
                         const habitsTodayDone = habitsToday.filter(habit => habit.done).length;
-                        setProgress(((habitsTodayDone/habitsToday.length) * 100).toFixed());
+                        const percentage = ((habitsTodayDone/habitsToday.length) * 100).toFixed();
+                        setProgress(percentage);
+                        localStorage.setItem("progress", percentage);
                     }
                 }
             )

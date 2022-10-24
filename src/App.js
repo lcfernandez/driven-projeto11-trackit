@@ -21,7 +21,9 @@ function App() {
     const [days, setDays] = useState([]);
     const [historyDetails, setHistoryDetails] = useState(undefined);
     const [name, setName] = useState("");
-    const [progress, setProgress] = useState(0);
+    const [progress, setProgress] = useState(
+        localStorage.getItem("progress") || 0
+    );
     const [token, setToken] = useState(
         localStorage.getItem("token") || ""
     );
