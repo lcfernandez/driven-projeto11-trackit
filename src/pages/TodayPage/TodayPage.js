@@ -13,16 +13,16 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
+import "dayjs/locale/pt-br";
+
 export default function TodayPage() {
     const [progress, setProgress] = useContext(ProgressContext);
     const [token] = useContext(TokenContext);
 
     const [habitsToday, setHabitsToday] = useState(undefined);
 
-    const dayjs = require('dayjs');
-    
-    const weekDay = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"][dayjs().day()];
-    const date = dayjs().format('DD/MM');
+    const dayjs = require("dayjs");
+    const date = dayjs().locale("pt-br").format("dddd, DD/MM");
 
     useEffect(() => {
         const config = {
@@ -80,7 +80,7 @@ export default function TodayPage() {
 
             <span data-identifier="today-infos">
                 <div>
-                    {weekDay}, {date}
+                    {/* {weekDay},  */}{date}
                 </div>
                 
                 {progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
@@ -119,6 +119,10 @@ const TodayPageContainer = styled.div`
             color: ${DARK_BLUE};
             font-size: 22px;
             line-height: 29px;
+
+            ::first-letter {
+                text-transform: capitalize;
+            }
         }
     }
 `;

@@ -14,11 +14,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-    const [avatar, setAvatar] = useState("");
+    const [avatar, setAvatar] = useState(
+        localStorage.getItem("avatar") || ""
+    );
     const [days, setDays] = useState([]);
     const [name, setName] = useState("");
     const [progress, setProgress] = useState(0);
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState(
+        localStorage.getItem("token") || ""
+    );
     
     return (
         <BrowserRouter>

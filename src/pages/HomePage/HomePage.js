@@ -40,7 +40,9 @@ export default function HomePage() {
             .then(
                 (res) => {
                     setAvatar(res.data.image);
+                    localStorage.setItem("avatar", res.data.image);
                     setToken(res.data.token);
+                    localStorage.setItem("token", res.data.token);
                     navigate("/hoje");
                 }
             )
