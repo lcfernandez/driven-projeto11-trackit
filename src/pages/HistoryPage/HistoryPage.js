@@ -1,4 +1,4 @@
-import { BACKGROUND, DARK_BLUE, GRAY, WHITE } from "../../constants/colors";
+import { BACKGROUND, DARK_BLUE, GRAY } from "../../constants/colors";
 
 import Footer from "../../components/Footer/Footer";
 import HeaderApp from "../../components/HeaderApp/HeaderApp";
@@ -71,9 +71,7 @@ export default function HistoryPage() {
             <CalendarStyled
                 calendarType="US"
                 onChange={onChange}
-                value={value}
                 tileClassName={
-
                     ({ date }) => {
                         if (!dayjs(date).isToday()) {
                             if (completedDays.includes(dayjs(date).format("DD/MM/YYYY"))) {
@@ -86,6 +84,7 @@ export default function HistoryPage() {
                         }
                     }
                 }
+                value={value}
             />
 
             <Footer />
@@ -100,7 +99,9 @@ const CalendarStyled = styled(Calendar)`
     margin: 11px auto;
 
     .react-calendar__tile {
-        height: 50px;
+        height: 34px;
+        max-width: 34px;
+        margin: 8px;
     }
 
     .react-calendar__tile--completed {

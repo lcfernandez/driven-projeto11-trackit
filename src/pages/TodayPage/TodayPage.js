@@ -80,7 +80,7 @@ export default function TodayPage() {
 
             <span data-identifier="today-infos">
                 <div>
-                    {/* {weekDay},  */}{date}
+                    {date}
                 </div>
                 
                 {progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
